@@ -150,21 +150,33 @@
 
             card.style.transform = "scale(2.5)"
             html2canvas(card).then(function (canvas) {
-                let dataUrl = canvas.toDataURL('image/png');
+                // let dataUrl = canvas.toDataURL('image/png');
 
-                // Convert canvas to image and append it to the body or wherever you want
-                // document.body.appendChild(canvas);
-                var img = new Image();
-                img.src = dataUrl
+                // // Convert canvas to image and append it to the body or wherever you want
+                // // document.body.appendChild(canvas);
+                // var img = new Image();
+                // img.src = dataUrl
 
-                // Open the base64 URL in a new browser window
-                console.log(dataUrl)
-                // window.open(dataUrl, '_blank');
+                // // Open the base64 URL in a new browser window
+                // console.log(dataUrl)
+                // // window.open(dataUrl, '_blank');
 
-                downloadImage(
-                    img,
-                    (nameInput.value == "" ? "Empty Invite" : nameInput.value)
+                // downloadImage(
+                //     img,
+                //     (nameInput.value == "" ? "Empty Invite" : nameInput.value)
+                //     )
+
+                canvas.toBlob((blob)=>{
+                    let url = URL.createObjectURL(blob);
+
+                    downloadImage(
+                        url,
+                        (nameInput.value == "" ? "Empty Invite" : nameInput.value)
                     )
+                        
+                    URL.revokeObjectURL(url);
+                }
+                , 'image/png')
             });
 
             card.style.transform = unadjustedTransformStyle;
@@ -175,10 +187,10 @@
             name.innerHTML = nameInput.value == "" ? "_________________________" : nameInput.value
         }
 
-        function downloadImage(image, name = "Empty Invite") {
+        function downloadImage(url, name = "Empty Invite") {
             var link = document.createElement('a');
 
-            link.href = image.src;
+            link.href = url;
             link.download = `${name}.png`; // Specify the name for the downloaded file
 
             document.body.appendChild(link);
