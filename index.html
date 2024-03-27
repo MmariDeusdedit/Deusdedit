@@ -70,7 +70,7 @@
 <body>
     <section class="container">
         <div id="card" class="aspect-[0.704838709677419] rounded-[8px]">
-            <Img id="test"
+            <Img id="backgroundImage"
                 style="z-index: -1; position: absolute; top: 0; left: 0; height: 100%; width: 100%; border-radius: 1rem;"
                 src="./background.png" />
             <!-- <div id="date">
@@ -121,6 +121,10 @@
         <input type="text" id="nameInput" placeholder="Insert Invitee's Name Here"
             class="border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
     </section>
+    <section class="inputContainer mx-auto p-4">
+        <input type="checkbox" id="addRibbonCheckbox">
+        <label for="addRibbonCheckbox">Add Ribbon</label>
+    </section>
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
@@ -131,6 +135,8 @@
         let card = document.getElementById("card")
         let nameInput = document.getElementById("nameInput")
         let name = document.getElementById("name")
+        let ribbonCheckbox = document.getElementById("addRibbonCheckbox");
+        let backgroundImage = document.getElementById("backgroundImage");
         let options = {
             scale: 1
         }
@@ -143,6 +149,14 @@
               .querySelector("[name=viewport]")
               .setAttribute("content","width=device-width, initial-scale=1, maximum-scale=1");
         }
+
+        ribbonCheckbox.addEventListener('change', function() {
+            if (ribbonCheckbox.checked) {
+                backgroundImage.src = "background-ribbon.png";
+            } else {
+                backgroundImage.src = "background.png";
+            }
+        });
 
         btn.onclick = e => {
             let unadjustedTransformStyle = card.style.transform
