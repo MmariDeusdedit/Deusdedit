@@ -144,11 +144,11 @@
         document.getElementsByTagName("HTML")[0].style.fontSize = (card.clientHeight / 80) + "px"
 
         // Preventing iOS from zooming in on the keyboard
-        if(navigator.userAgent.indexOf('iPhone') > -1 ){
-            document
-              .querySelector("[name=viewport]")
-              .setAttribute("content","width=device-width, initial-scale=1, maximum-scale=1");
-        }
+        // if(navigator.userAgent.indexOf('iPhone') > -1 ){
+        //     document
+        //       .querySelector("[name=viewport]")
+        //       .setAttribute("content","width=device-width, initial-scale=1, maximum-scale=1");
+        // }
 
         ribbonCheckbox.addEventListener('change', function() {
             if (ribbonCheckbox.checked) {
