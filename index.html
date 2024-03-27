@@ -162,7 +162,10 @@
             let unadjustedTransformStyle = card.style.transform
             let unadjustedBorderRadius = card.style.borderRadius
 
+            // Adding the sace of the image for quality & removing the border radius for full page viewing
             card.style.transform = "scale(2.5)"
+            card.style.borderRadius = 0
+            
             html2canvas(card).then(function (canvas) {
 
                 canvas.toBlob((blob)=>{
@@ -178,6 +181,8 @@
                         url,
                         (nameInput.value == "" ? "Empty Invite" : nameInput.value)
                     )
+
+                    URL.revokeObjectURL(url);
                 }
                 , 'image/png')
             });
@@ -199,8 +204,6 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
-            URL.revokeObjectURL(url);
         }
     </script>
 </body>
