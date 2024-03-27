@@ -118,7 +118,7 @@
             </svg>
 
         </button>
-        <input type="text" id="nameInput" placeholder="Name"
+        <input type="text" id="nameInput" placeholder="Insert Invitee's Name Here"
             class="border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
     </section>
 
@@ -137,8 +137,16 @@
 
         document.getElementsByTagName("HTML")[0].style.fontSize = (card.clientHeight / 80) + "px"
 
+        // Preventing iOS from zooming in on the keyboard
+        if(navigator.userAgent.indexOf('iPhone') > -1 ){
+            document
+              .querySelector("[name=viewport]")
+              .setAttribute("content","width=device-width, initial-scale=1, maximum-scale=1");
+        }
+
         btn.onclick = e => {
             let unadjustedTransformStyle = card.style.transform
+            let unadjustedBorderRadius = card.style.borderRadius
 
             card.style.transform = "scale(2.5)"
             html2canvas(card).then(function (canvas) {
@@ -159,7 +167,8 @@
                     )
             });
 
-            card.style.transform = unadjustedTransformStyle
+            card.style.transform = unadjustedTransformStyle;
+            card.style.borderRadius = unadjustedBorderRadius;
         }
 
         nameInput.oninput = (e) => {
