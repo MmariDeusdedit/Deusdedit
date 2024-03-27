@@ -182,14 +182,19 @@
                 //     )
 
                 canvas.toBlob((blob)=>{
-                    let url = URL.createObjectURL(blob);
-
-                    downloadImage(
-                        url,
-                        (nameInput.value == "" ? "Empty Invite" : nameInput.value)
-                    )
-                
-                   alert("now here")
+                    if (blob) {
+                        let url = URL.createObjectURL(blob);
+    
+                        downloadImage(
+                            url,
+                            (nameInput.value == "" ? "Empty Invite" : nameInput.value)
+                        )
+                    
+                       alert("now here")
+                    } else {
+                        // Blob creation failed, handle the error
+                        alert("Failed to create Blob.");
+                    }
                 }
                 , 'image/png')
             });
