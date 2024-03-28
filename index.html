@@ -165,7 +165,7 @@
 
             // Adding the sace of the image for quality & removing the border radius for full page viewing
             card.style.transform = "scale(2.5)"
-            card.style.borderRadius = 0
+            backgroundImage.style.borderRadius = 0
             
             html2canvas(card).then(function (canvas) {
 
@@ -178,7 +178,7 @@
                         url = canvas.toDataURL('image/png')
                     }
 
-                    console.log(canvas.toDataURL('image/png'))
+                    // console.log(canvas.toDataURL('image/png'))
     
                     downloadImage(
                         url,
