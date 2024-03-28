@@ -159,8 +159,9 @@
         });
 
         btn.onclick = e => {
+            // Storing the original styles that won't look good in the final printed card.
             let unadjustedTransformStyle = card.style.transform
-            let unadjustedBorderRadius = card.style.borderRadius
+            let unadjustedBorderRadius = backgroundImage.style.borderRadius
 
             // Adding the sace of the image for quality & removing the border radius for full page viewing
             card.style.transform = "scale(2.5)"
@@ -189,8 +190,9 @@
                 , 'image/png')
             });
 
+            // Restoring the original styles for preview
             card.style.transform = unadjustedTransformStyle;
-            card.style.borderRadius = unadjustedBorderRadius;
+            backgroundImage.style.borderRadius = unadjustedBorderRadius;
         }
 
         nameInput.oninput = (e) => {
